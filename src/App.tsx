@@ -4,8 +4,10 @@ import {
   setQuestionsError,
   setQuestionsLoading,
 } from "./features/questions/questionReducer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "./app/store";
+import Quiz from "./components/questions/Quiz";
+import { Answer } from "./types/questions";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,9 +30,21 @@ function App() {
     loadQuestionData();
   }, []);
 
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const handleAnswer = (answer: Answer) => {
+    setAnswers((answers) => {
+      const filteredAnswers = answers.filter(
+        (ans: Answer) => ans.qId !== answer.qId
+      );
+      return [...filteredAnswers, answer];
+    });
+  };
+
   return (
     <>
-      <div className="main"></div>
+      <div className="main">
+        <Quiz answers={answers} onHandleAnswer={handleAnswer} />
+      </div>
     </>
   );
 }

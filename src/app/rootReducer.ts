@@ -4,7 +4,7 @@ import questions, { QuestionDataSlice } from "../features/questions/questionRedu
 import storage from "redux-persist/lib/storage/session";
 
 export interface RootSliceType {
-    questionData: QuestionDataSlice;
+  questions: QuestionDataSlice;
   }
 
 const questionConfig = {
