@@ -1,28 +1,22 @@
-import "./App.css";
-import { getQuestionData } from "./features/questions/questionActions";
-import {
-  setQuestionsError,
-  setQuestionsLoading,
-} from "./features/questions/questionReducer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { getQuestionData } from "./features/quiz/questionActions";
+import { setQuizError, setQuizLoading } from "./features/quiz/questionReducer";
 import { useAppDispatch } from "./app/store";
-import Quiz from "./components/questions/Quiz";
-import { Answer } from "./types/questions";
+import Quiz from "./components/quiz/Quiz";
+import "./App.css";
 
 function App() {
   const dispatch = useAppDispatch();
   const loadQuestionData = async () => {
-    console.log("loadQuestionData");
-    
-    dispatch(setQuestionsLoading(true));
+    dispatch(setQuizLoading(true));
     try {
       await dispatch(getQuestionData());
     } catch (err: any) {
       console.log(err);
-      dispatch(setQuestionsError(err));
-      dispatch(setQuestionsLoading(false));
+      dispatch(setQuizError(err));
+      dispatch(setQuizLoading(false));
     } finally {
-      dispatch(setQuestionsLoading(false));
+      dispatch(setQuizLoading(false));
     }
   };
 
@@ -30,20 +24,10 @@ function App() {
     loadQuestionData();
   }, []);
 
-  const [answers, setAnswers] = useState<Answer[]>([]);
-  const handleAnswer = (answer: Answer) => {
-    setAnswers((answers) => {
-      const filteredAnswers = answers.filter(
-        (ans: Answer) => ans.qId !== answer.qId
-      );
-      return [...filteredAnswers, answer];
-    });
-  };
-
   return (
     <>
       <div className="main">
-        <Quiz answers={answers} onHandleAnswer={handleAnswer} />
+        <Quiz />
       </div>
     </>
   );

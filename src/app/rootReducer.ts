@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import persistReducer from "redux-persist/es/persistReducer";
-import questions, { QuestionDataSlice } from "../features/questions/questionReducer";
+import questions, { QuestionDataSlice } from "../features/quiz/questionReducer";
 import storage from "redux-persist/lib/storage/session";
 
 export interface RootSliceType {

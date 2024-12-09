@@ -5,11 +5,7 @@ export const getQuestionData = createAsyncThunk(
   "get-question-data",
   async (_, { rejectWithValue }) => {
     try {
-      console.log("getQuestionData - ACTION");
-
-      const res = await QuestionsDataService.getQuestionData();
-      console.log({res});
-      
+      const res = await QuestionsDataService.getQuestionData();      
       return res;
     } catch (err) {
       rejectWithValue(err);

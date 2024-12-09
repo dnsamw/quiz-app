@@ -2,7 +2,7 @@ import { useState } from "react";
 import QuizStatus from "./QuizStatus";
 import QuestionCard from "./QuestionCard";
 import QuizControls from "./QuizControls";
-import useQuestionDataSelector from "../../features/questions/questionSelector";
+import useQuestionDataSelector from "../../features/quiz/questionSelector";
 import "../../styles/quiz.css";
 
 const Quiz = () => {
@@ -26,7 +26,7 @@ const Quiz = () => {
 
   // Handle quiz state when no questions or loading
   if (isLoading) {
-    return <div>Loading questions...</div>;
+    return <div>Loading Quiz...</div>;
   }
 
   if (error) {
@@ -37,7 +37,7 @@ const Quiz = () => {
     return <div>No questions available</div>;
   }
 
-  const currentQuestion = quizQuestions[currentQIndex];
+  const currentQuestion = {...quizQuestions[currentQIndex], number: currentQIndex+1};
   return (
     <>
       <div className="quiz">

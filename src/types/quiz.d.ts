@@ -1,5 +1,6 @@
 export type Question = {
   id: number;
+  number?: number;
   question: string;
   options: string[];
   correctAnswer: string;

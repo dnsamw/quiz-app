@@ -1,3 +1,5 @@
+import { useAppDispatch } from '../../app/store';
+import {setQuizLoading} from '../../features/quiz/questionReducer';
 import '../../styles/quiz-controls.css';
 interface Props {
   isFirstQuestion: boolean;
@@ -12,6 +14,15 @@ const QuizControls = ({
   isFirstQuestion,
   isLastQuestion,
 }: Props) => {
+
+
+
+  const dispatch = useAppDispatch();
+
+  const handleAnwerCheck = () => {
+    dispatch(setQuizLoading(true));
+  };
+
   return (
     <>
       <div className="quiz-controls">
@@ -32,7 +43,7 @@ const QuizControls = ({
           </button>
         )}
 
-        {isLastQuestion && <button className="control-button">Submit</button>}
+        {isLastQuestion && <button onClick={handleAnwerCheck} className="control-button">Submit</button>}
       </div>
     </>
   );

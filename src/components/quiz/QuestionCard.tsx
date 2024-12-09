@@ -1,7 +1,7 @@
-import { Answer, Question } from "../../types/questions";
-import useQuestionDataSelector from "../../features/questions/questionSelector";
+import { Answer, Question } from "../../types/quiz";
+import useQuestionDataSelector from "../../features/quiz/questionSelector";
 import { useAppDispatch } from "../../app/store";
-import { updateAnswerData } from "../../features/questions/questionReducer";
+import { updateAnswerData } from "../../features/quiz/questionReducer";
 import "../../styles/question-card.css";
 
 interface Props {
@@ -9,9 +9,8 @@ interface Props {
   onSelectAnswer: () => void;
 }
 
-const QuestionCard = ({ question,onSelectAnswer }: Props) => {
-
-  const { answers: quizAnswers} = useQuestionDataSelector();
+const QuestionCard = ({ question, onSelectAnswer }: Props) => {
+  const { answers: quizAnswers, loading:isLoading } = useQuestionDataSelector();
   const dispatch = useAppDispatch();
   const handleSelectAnswer = (answer: Answer) => {
     dispatch(updateAnswerData(answer));
@@ -24,10 +23,16 @@ const QuestionCard = ({ question,onSelectAnswer }: Props) => {
     return <div className="question-container">Nothing to show!</div>;
   }
 
+  if(isLoading) {
+    return(
+      <div className="question-container">Loading...</div>
+    );
+  }
+
   return (
     <>
       <div className="question-container">
-        <div className="question">{question.question}</div>
+        <div className="question">{question?.number}. {question.question}</div>
         <div className="options">
           {question.options.map((option: string, index: number) => (
             <div

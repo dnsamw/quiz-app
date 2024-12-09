@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getQuestionData } from "./questionActions";
-import { Answer } from "../../types/questions";
+import { Answer } from "../../types/quiz";
 
 export interface QuestionDataSlice {
   loading: boolean;
@@ -32,10 +32,10 @@ export const questionDataSlice = createSlice({
         action.payload,
       ];
     },
-    setQuestionsLoading: (state, action) => {
+    setQuizLoading: (state, action) => {
       state.loading = action.payload;
     },
-    setQuestionsError: (state, action) => {
+    setQuizError: (state, action) => {
       state.error = action.payload;
     },
   },
@@ -56,8 +56,8 @@ export const questionDataSlice = createSlice({
 
 export const {
   setQuestionData,
-  setQuestionsLoading,
-  setQuestionsError,
+  setQuizLoading,
+  setQuizError,
   updateAnswerData,
 } = questionDataSlice.actions;
 
