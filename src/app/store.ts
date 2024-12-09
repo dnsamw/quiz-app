@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "onsite", "finalData", "seatBookingSlice"],
+  whitelist: ["auth", "questions"],
 };
 
 const store = configureStore({

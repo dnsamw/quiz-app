@@ -1,15 +1,23 @@
 import { Answer, Question } from "../../types/questions";
+import useQuestionDataSelector from "../../features/questions/questionSelector";
+import { useAppDispatch } from "../../app/store";
+import { updateAnswerData } from "../../features/questions/questionReducer";
 import "../../styles/question-card.css";
 
 interface Props {
   question: Question | null;
-  answers: Answer[];
-  onAnswer: (answer: Answer) => void;
+  onSelectAnswer: () => void;
 }
 
-const QuestionCard = ({ question, answers, onAnswer }: Props) => {
+const QuestionCard = ({ question,onSelectAnswer }: Props) => {
+
+  const { answers: quizAnswers} = useQuestionDataSelector();
+  const dispatch = useAppDispatch();
   const handleSelectAnswer = (answer: Answer) => {
-    onAnswer(answer);
+    dispatch(updateAnswerData(answer));
+    setTimeout(() => {
+      onSelectAnswer();
+    }, 300);
   };
 
   if (!question) {
@@ -28,7 +36,7 @@ const QuestionCard = ({ question, answers, onAnswer }: Props) => {
               }
               key={index}
               className={`option ${
-                answers.find((ans: Answer) => ans.answer === option)
+                quizAnswers.find((ans: Answer) => ans.answer === option)
                   ? " active"
                   : ""
               }`}

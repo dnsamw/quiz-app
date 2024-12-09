@@ -1,19 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import QuizStatus from './QuizStatus';
-import QuestionCard from './QuestionCard';
-import QuizControls from './QuizControls';
-import '../../styles/quiz.css';
-import { Answer, Question } from '../../types/questions';
-import useQuestionDataSelector from '../../features/questions/questionSelector';
+import { useState } from "react";
+import QuizStatus from "./QuizStatus";
+import QuestionCard from "./QuestionCard";
+import QuizControls from "./QuizControls";
+import useQuestionDataSelector from "../../features/questions/questionSelector";
+import "../../styles/quiz.css";
 
-interface Props {
-  answers: Answer[];
-  onHandleAnswer: (answers: Answer) => void;
-}
-
-const Quiz = ({ answers, onHandleAnswer }: Props) => {
+const Quiz = () => {
   const [currentQIndex, setCurrentQIndex] = useState<number>(0);
-  const { selectQuestionData:quizQuestions, loading: isLoading, error } = useQuestionDataSelector();
+  const {
+    questions: quizQuestions,
+    loading: isLoading,
+    error,
+  } = useQuestionDataSelector();
 
   // Improved navigation logic
   const handleNext = () => {
@@ -24,14 +22,6 @@ const Quiz = ({ answers, onHandleAnswer }: Props) => {
 
   const handlePrev = () => {
     setCurrentQIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
-  };
-
-  const updateAnswers = (answer: Answer) => {
-    // console.log({ answers });
-    // const filteredAnswers = answers.filter(
-    //   (ans: Answer) => ans.qId === answer.qId
-    // );
-    onHandleAnswer(answer);
   };
 
   // Handle quiz state when no questions or loading
@@ -56,11 +46,7 @@ const Quiz = ({ answers, onHandleAnswer }: Props) => {
           qNumber={currentQIndex + 1}
           totalQuestions={quizQuestions.length}
         />
-        <QuestionCard
-          answers={answers}
-          onAnswer={updateAnswers}
-          question={currentQuestion}
-        />
+        <QuestionCard question={currentQuestion} onSelectAnswer={handleNext} />
         <QuizControls
           onNext={handleNext}
           onPrev={handlePrev}

@@ -3,8 +3,12 @@ import { RootSliceType } from "../../app/rootReducer";
 
 const useQuestionDataSelector = () => {
   return {
-    selectQuestionData: useSelector(
+    questions: useSelector(
       (state: RootSliceType) => state?.questions?.questionData
+    ),
+
+    answers: useSelector(
+      (state: RootSliceType) => state?.questions?.answerData
     ),
 
     error: useSelector((state: RootSliceType) => state?.questions?.error),
