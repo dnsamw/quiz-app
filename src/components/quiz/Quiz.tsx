@@ -1,32 +1,51 @@
-import { useState } from "react";
 import QuizStatus from "./QuizStatus";
 import QuestionCard from "./QuestionCard";
 import QuizControls from "./QuizControls";
+import { setCurrentQIndex } from "../../features/quiz/questionReducer";
 import useQuestionDataSelector from "../../features/quiz/questionSelector";
 import "../../styles/quiz.css";
+import { useAppDispatch } from "../../app/store";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Quiz = () => {
-  const [currentQIndex, setCurrentQIndex] = useState<number>(0);
+  // const [currentQIndex, setCurrentQIndex] = useState<number>(0);
+  const dispatch = useAppDispatch();
   const {
     questions: quizQuestions,
     loading: isLoading,
+    currentQIndex,
     error,
   } = useQuestionDataSelector();
 
   // Improved navigation logic
   const handleNext = () => {
-    setCurrentQIndex((prevIndex) =>
-      prevIndex < quizQuestions.length - 1 ? prevIndex + 1 : prevIndex
+    dispatch(
+      setCurrentQIndex(
+        currentQIndex < quizQuestions.length - 1
+          ? currentQIndex + 1
+          : currentQIndex
+      )
     );
   };
 
   const handlePrev = () => {
-    setCurrentQIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+    dispatch(
+      setCurrentQIndex(currentQIndex > 0 ? currentQIndex - 1 : currentQIndex)
+    );
   };
 
   // Handle quiz state when no questions or loading
   if (isLoading) {
-    return <div>Loading Quiz...</div>;
+    return <div className="quiz">
+      <ClipLoader
+        color={'#7fffd4'}
+        loading={isLoading}
+        // cssOverride={override}
+        size={60}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>;
   }
 
   if (error) {
@@ -37,7 +56,10 @@ const Quiz = () => {
     return <div>No questions available</div>;
   }
 
-  const currentQuestion = {...quizQuestions[currentQIndex], number: currentQIndex+1};
+  const currentQuestion = {
+    ...quizQuestions[currentQIndex],
+    number: currentQIndex + 1,
+  };
   return (
     <>
       <div className="quiz">

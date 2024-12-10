@@ -4,16 +4,20 @@ import { Answer } from "../../types/quiz";
 
 export interface QuestionDataSlice {
   loading: boolean;
-  error: any;
   questionData: any;
+  currentQIndex: number;
   answerData: Answer[];
+  resultData: any;
+  error: any;
 }
 
 const initialState: QuestionDataSlice = {
   loading: false,
   error: null,
   questionData: [],
+  currentQIndex: 0,
   answerData: [],
+  resultData: null,
 };
 
 export const questionDataSlice = createSlice({
@@ -32,9 +36,23 @@ export const questionDataSlice = createSlice({
         action.payload,
       ];
     },
+
+    clearAnswerData: (state) => {
+      state.answerData = [];  
+    },
+
+    setCurrentQIndex: (state, action) => {
+      state.currentQIndex = action.payload;
+    },
+
+    setResultData: (state, action) => {
+      state.resultData = action.payload;
+    },
+
     setQuizLoading: (state, action) => {
       state.loading = action.payload;
     },
+
     setQuizError: (state, action) => {
       state.error = action.payload;
     },
@@ -59,6 +77,9 @@ export const {
   setQuizLoading,
   setQuizError,
   updateAnswerData,
+  clearAnswerData,
+  setCurrentQIndex,
+  setResultData,
 } = questionDataSlice.actions;
 
 export default questionDataSlice.reducer;

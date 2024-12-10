@@ -7,8 +7,16 @@ const useQuestionDataSelector = () => {
       (state: RootSliceType) => state?.questions?.questionData
     ),
 
+    currentQIndex: useSelector(
+      (state: RootSliceType) => state?.questions?.currentQIndex
+    ),
+
     answers: useSelector(
       (state: RootSliceType) => state?.questions?.answerData
+    ),
+
+    results: useSelector(
+      (state: RootSliceType) => state?.questions?.resultData
     ),
 
     error: useSelector((state: RootSliceType) => state?.questions?.error),
