@@ -52,14 +52,21 @@ const Quiz = () => {
     return <div>Error: {error}</div>;
   }
 
-  if (quizQuestions.length === 0) {
+  if (quizQuestions?.length === 0) {
     return <div>No questions available</div>;
   }
 
-  const currentQuestion = {
+  const currentQuestion = quizQuestions && {
     ...quizQuestions[currentQIndex],
     number: currentQIndex + 1,
   };
+
+  if (!currentQuestion) {
+    console.log("error", error);
+    
+    return <div>Question not found</div>;
+  }
+
   return (
     <>
       <div className="quiz">

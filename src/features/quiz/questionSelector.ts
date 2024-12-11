@@ -4,24 +4,24 @@ import { RootSliceType } from "../../app/rootReducer";
 const useQuestionDataSelector = () => {
   return {
     questions: useSelector(
-      (state: RootSliceType) => state?.questions?.questionData
+      (state: RootSliceType) => state?.quiz?.questionData
     ),
 
     currentQIndex: useSelector(
-      (state: RootSliceType) => state?.questions?.currentQIndex
+      (state: RootSliceType) => state?.quiz?.currentQIndex
     ),
 
     answers: useSelector(
-      (state: RootSliceType) => state?.questions?.answerData
+      (state: RootSliceType) => state?.quiz?.answerData
     ),
 
     results: useSelector(
-      (state: RootSliceType) => state?.questions?.resultData
+      (state: RootSliceType) => state?.quiz?.resultData
     ),
 
-    error: useSelector((state: RootSliceType) => state?.questions?.error),
+    error: useSelector((state: RootSliceType) => state?.quiz?.error),
 
-    loading: useSelector((state: RootSliceType) => state?.questions?.loading),
+    loading: useSelector((state: RootSliceType) => state?.quiz?.loading),
   };
 };
 

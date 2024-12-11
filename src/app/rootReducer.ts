@@ -4,13 +4,13 @@ import questions, { QuestionDataSlice } from "../features/quiz/questionReducer";
 import storage from "redux-persist/lib/storage/session";
 
 export interface RootSliceType {
-  questions: QuestionDataSlice;
+  quiz: QuestionDataSlice;
   }
 
-const questionConfig = {
-    key: "questions",
+const quizConfig = {
+    key: "quiz",
     storage,
-    whitelist: ["questions"],
+    whitelist: ["quiz"],
     transforms: [
     //   encryptTransform({
     //     secretKey: Config.reduxPersistEncryptKey,
@@ -20,7 +20,7 @@ const questionConfig = {
 
 const rootReducer = combineReducers({
   // auth,
-  questions: persistReducer(questionConfig, questions),  
+  quiz: persistReducer(quizConfig, questions),  
 });
 
 export default rootReducer;

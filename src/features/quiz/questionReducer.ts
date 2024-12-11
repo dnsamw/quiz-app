@@ -56,6 +56,10 @@ export const questionDataSlice = createSlice({
     setQuizError: (state, action) => {
       state.error = action.payload;
     },
+
+    clearError: (state) => {
+      state.error = null;
+    }
   },
 
   extraReducers: (builder) => {
@@ -76,6 +80,7 @@ export const {
   setQuestionData,
   setQuizLoading,
   setQuizError,
+  clearError,
   updateAnswerData,
   clearAnswerData,
   setCurrentQIndex,
