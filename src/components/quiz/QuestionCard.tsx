@@ -1,8 +1,8 @@
 import { Answer, Question } from "../../types/quiz";
-import useQuestionDataSelector from "../../features/quiz/questionSelector";
 import { useAppDispatch } from "../../app/store";
 import { updateAnswerData } from "../../features/quiz/questionReducer";
-import "../../styles/question-card.css";
+import useQuestionDataSelector from "../../features/quiz/questionSelector";
+import "../../styles/question-card.scss";
 
 interface Props {
   question: Question | null;
@@ -56,7 +56,9 @@ const QuestionCard = ({ question, onSelectAnswer }: Props) => {
                   </div>
                 </div>
               ) : (
-                <div className="correct-answer">Answer: {result.correctAnswer}</div>
+                <div className="correct-answer">
+                  Answer: {result.correctAnswer}
+                </div>
               )}
             </div>
           ))}

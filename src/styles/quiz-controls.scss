@@ -1,0 +1,18 @@
+@use "./_variables.scss" as *;
+
+.quiz-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: $padding-std;
+    border: $normal-border;
+    width: 320px;
+    gap: $flex-gap-std;
+    
+    .control-button{
+      padding: 5px 20px;
+      cursor: pointer;
+    }
+  }
+  

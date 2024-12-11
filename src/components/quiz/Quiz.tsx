@@ -1,11 +1,12 @@
+import ClipLoader from "react-spinners/ClipLoader";
+import { setCurrentQIndex } from "../../features/quiz/questionReducer";
+import useQuestionDataSelector from "../../features/quiz/questionSelector";
+import { useAppDispatch } from "../../app/store";
+
 import QuizStatus from "./QuizStatus";
 import QuestionCard from "./QuestionCard";
 import QuizControls from "./QuizControls";
-import { setCurrentQIndex } from "../../features/quiz/questionReducer";
-import useQuestionDataSelector from "../../features/quiz/questionSelector";
-import "../../styles/quiz.css";
-import { useAppDispatch } from "../../app/store";
-import ClipLoader from "react-spinners/ClipLoader";
+import "../../styles/quiz.scss";
 
 const Quiz = () => {
   // const [currentQIndex, setCurrentQIndex] = useState<number>(0);

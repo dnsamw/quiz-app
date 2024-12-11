@@ -1,9 +1,11 @@
+@use "./_variables.scss" as *;
+
 .quiz-status {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 15px 10px;
-    border: 1px solid #777;
+    border: $normal-border;
     width: 320px;
-    gap: 10px;
+    gap: $flex-gap-std;
   }

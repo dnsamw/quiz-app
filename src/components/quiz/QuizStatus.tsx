@@ -1,5 +1,5 @@
 import useQuestionDataSelector from "../../features/quiz/questionSelector";
-import "../../styles/quiz-status.css";
+import "../../styles/quiz-status.scss";
 
 interface Props {
   qNumber: number;

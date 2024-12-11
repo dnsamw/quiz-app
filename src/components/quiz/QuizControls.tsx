@@ -6,8 +6,9 @@ import {
   setResultData,
 } from "../../features/quiz/questionReducer";
 import useQuestionDataSelector from "../../features/quiz/questionSelector";
-import "../../styles/quiz-controls.css";
 import { Answer, Question } from "../../types/quiz";
+import "../../styles/quiz-controls.scss";
+
 interface Props {
   isFirstQuestion: boolean;
   isLastQuestion: boolean;

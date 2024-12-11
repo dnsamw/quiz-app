@@ -3,7 +3,7 @@ import { getQuestionData } from "./features/quiz/questionActions";
 import { clearError, setQuizError, setQuizLoading } from "./features/quiz/questionReducer";
 import { useAppDispatch } from "./app/store";
 import Quiz from "./components/quiz/Quiz";
-import "./App.css";
+import "./app.scss";
 
 function App() {
   const dispatch = useAppDispatch();

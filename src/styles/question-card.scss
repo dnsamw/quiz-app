@@ -1,0 +1,70 @@
+@use "./_variables.scss" as *;
+
+.question-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: $padding-std;
+  border: $normal-border;
+  width: 320px;
+  gap: $flex-gap-std;
+  min-height: 250px;
+
+  .results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $flex-gap-std;
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: $flex-gap-std;
+      padding: $padding-std;
+      width: 100%;
+    }
+
+    .total-score {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $correct-color;
+    }
+
+    .correct {
+      background-color: $correct-color;
+    }
+
+    .incorrect {
+      background-color: $incorrect-color;
+    }
+  }
+
+  .question {
+    font-weight: 600;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+
+    .option {
+      border: 1px solid #cacaca;
+      padding: 8px 20px;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        border: $active-border;
+      }
+    }
+
+    .active {
+      background-color: $acive-color;
+    }
+  }
+}
